@@ -6,7 +6,6 @@ function getToken(req) {
 	return token && token.length ? token : null;
 }
 
-//p[olicy]\
 const policies = {
 	guest(user, { can }) {
 		can('read', 'Product');

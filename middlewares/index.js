@@ -34,8 +34,7 @@ function decodeToken() {
 		return next();
 	};
 }
-
-//middleware untuk mengecek hak akses
+// cek hak akses
 function police_check(action, subject) {
 	return function(req, res, next) {
 		let policy = policyFor(req.user);
