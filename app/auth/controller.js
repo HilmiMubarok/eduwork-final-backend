@@ -12,16 +12,14 @@ const register = async (req, res, next) => {
 		await user.save();
 		return res.json(user);
 	} catch (err) {
-		//1. cek kemungkinan kesalahan validasi
 
-		if (err && err.name === 'ValidatonError') {
+		if (err ) {
 			return res.json({
 				error: 1,
 				message: err.message,
 				fields: err.errors
 			});
 		}
-		//error liannya
 		next(err);
 	}
 };
