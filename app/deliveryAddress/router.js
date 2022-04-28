@@ -3,12 +3,12 @@ const deliveryAddressController = require('./controller');
 const router = require('express').Router();
 
 router.get(
-  '/delivery-addresses', 
+  '/delivery-addresses',
   police_check('view', 'DeliveryAddress'),
   deliveryAddressController.index);
 
 router.post(
-  '/delivery-addresses', 
+  '/delivery-addresses',
   police_check('create', 'DeliveryAddress'),
   deliveryAddressController.store
   );

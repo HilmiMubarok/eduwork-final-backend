@@ -21,14 +21,16 @@ const store = async (req, res, next) => {
 		}
 
 		//tag
-		if (payload.tags && payload.length > 0) {
-			let tags = await Tag.findOne({ name: { $in: payload.tags } });
-			if (tags.length) {
-				payload = { ...payload, tags: tags.map((tag) => tag._id) };
-			} else {
-				delete payload.tags;
-			}
-		}
+		if(payload.tags && payload.length > 0){
+      let tags =
+        await Tag
+        .findOne({name: {$in: payload.tags}});
+      if(tags.length){
+         payload = {...payload, tags: tags.map(tag => tag._id)};
+      } else {
+         delete payload.tags;
+      }
+    }
 
 		if (req.file) {
 			let tmp_path = req.file.path;
@@ -47,7 +49,7 @@ const store = async (req, res, next) => {
 					return res.json(product);
 				} catch (err) {
 					fs.unlinkSync(target_path);
-					if (err && err.name === 'ValidationError') {
+					if (err) {
 						return res.json({
 							error: 1,
 							message: err.message,
@@ -68,14 +70,21 @@ const store = async (req, res, next) => {
 			return res.json(product);
 		}
 	} catch (err) {
-		if (err && err.name === 'ValidationError') {
+		if (err) {
 			return res.json({
 				error: 1,
 				message: err.message,
 				fields: err.errors
 			});
 		}
-		next(err);
+		next(err);if (payload.tags && payload.length > 0) {
+			let tags = await Tag.findOne({ name: { $in: payload.tags } });
+			if (tags.length) {
+				payload = { ...payload, tags: tags.map((tag) => tag._id) };
+			} else {
+				delete payload.tags;
+			}
+		}
 	}
 };
 

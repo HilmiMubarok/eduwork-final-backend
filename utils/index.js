@@ -35,7 +35,7 @@ const policyFor = (user) => {
 	} else {
 		policies['guest'](user, builder);
 	}
-	return new Ability(builder, rules);
+	return new Ability(builder.rules);
 };
 
 module.exports = {

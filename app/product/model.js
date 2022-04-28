@@ -9,8 +9,8 @@ const productSchema = new Schema ({
 
   name : {
     type: String,
-    min : [3, 'panjang nama makanan minimal 3 karakter'],
-    required: [ true, ' Nama Makanan Harus Diisi']
+    min : [3, 'panjang nama product minimal 3 karakter'],
+    required: [ true, ' Nama product Harus Diisi']
   },
 
   price : {
@@ -24,11 +24,12 @@ const productSchema = new Schema ({
     type: Schema.Types.ObjectId,
     ref: 'Category'
   },
+
   tags: {
     type: Schema.Types.ObjectId,
     ref: 'Tag'
   }
-  
+
 }, {timestamps : true});
 
 module.exports = model('Product', productSchema);

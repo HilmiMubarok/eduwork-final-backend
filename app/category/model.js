@@ -7,9 +7,9 @@ const categorySchema = new Schema ({
     type: String,
     min : [3, 'panjang nama category minimal 3 karakter'],
     max: [20, 'panjang nama makanan max 20 karakter'],
-    required: [ true, ' Nama Makanan Harus Diisi']
+    required: [ true, ' Nama Kategori Harus Diisi']
   }
-  
+
 });
 
 module.exports = model('Category', categorySchema);

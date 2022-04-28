@@ -9,7 +9,7 @@ const store = async (req, res, next) => {
     return res.json(category);
 
   }catch (err) {
-    if(err && err.name === 'ValidationError') {
+    if(err) {
       return res.json({
         error : 1,
         message : err.message,
@@ -29,7 +29,7 @@ const update = async (req, res, next) => {
     return res.json(category);
 
   }catch (err) {
-    if(err && err.name === 'ValidationError') {
+    if(err) {
       return res.json({
         error : 1,
         message : err.message,
@@ -46,7 +46,7 @@ const index = async (req, res, next) => {
     let category = await Categories.find();
     return res.json(category);
   }catch (err) {
-    if(err && err.name === 'ValidationError') {
+    if(err) {
       return res.json({
         error : 1,
         message : err.message,

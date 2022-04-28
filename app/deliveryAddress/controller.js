@@ -11,9 +11,9 @@ const store = async (req, res, next ) => {
 
     await address.save();
     return res.json(address);
-  
+
   } catch (err) {
-    if(err && err.name === 'ValidationError') {
+    if(err) {
       return res.json({
         error : 1,
         message : err.message,
@@ -63,7 +63,7 @@ const index = async (req, res, next) => {
   try {
     let {skip=0, limit= 10} = req.query;
     let count = await DeliveryAdresss.find({user: req.user._id}).countDocuments();
-    let address = 
+    let address =
       await DeliveryAdress
       .find({user: req.user._id})
       .skip(parseInt(skip))
@@ -71,7 +71,7 @@ const index = async (req, res, next) => {
       .sort('-createdAt');
 
       return res.json({data: address, count});
- 
+
   }catch (err) {
     if(err && err.name === 'ValidationError') {
       return res.json({
